@@ -1,0 +1,2 @@
+C:/SOFT/Cube_IDE_pro/MAKET_VID_LAND/DSP_Lib/Include/arm_math.h:469:25:clip_q63_to_q31	16	static
+../DSP_Lib/Source/FilteringFunctions/arm_lms_q31.c:77:6:arm_lms_q31	528	static

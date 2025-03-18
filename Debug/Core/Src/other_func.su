@@ -1,0 +1,11 @@
+../Core/Src/other_func.c:31:6:Ramp_Init	32	static
+../Core/Src/other_func.c:46:6:Ramp_Clear	16	static
+../Core/Src/other_func.c:57:6:Ramp_Process	16	static
+../Core/Src/other_func.c:115:6:Regulator_Init	48	static
+../Core/Src/other_func.c:132:6:Regulator_Clear	16	static
+../Core/Src/other_func.c:141:6:Regulator_Process	32	static
+../Core/Src/other_func.c:161:6:Clarke_transform	16	static
+../Core/Src/other_func.c:168:6:Inverse_Clarke_transform	24	static
+../Core/Src/other_func.c:176:6:Direct_Park_transform	24	static
+../Core/Src/other_func.c:183:6:Inverse_Park_transform	24	static
+../Core/Src/other_func.c:190:6:PFM_Generator	24	static
