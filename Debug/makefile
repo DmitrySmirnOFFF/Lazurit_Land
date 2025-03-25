@@ -1,6 +1,6 @@
 ################################################################################
 # Automatically-generated file. Do not edit!
-# Toolchain: GNU Tools for STM32 (11.3.rel1)
+# Toolchain: GNU Tools for STM32 (9-2020-q2-update)
 ################################################################################
 
 -include ../makefile.init
@@ -53,9 +53,6 @@ BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ART
 EXECUTABLES += \
 MAKET_VID_FINAL.elf \
 
-MAP_FILES += \
-MAKET_VID_FINAL.map \
-
 SIZE_OUTPUT += \
 default.size.stdout \
 
@@ -65,6 +62,9 @@ MAKET_VID_FINAL.list \
 OBJCOPY_HEX += \
 MAKET_VID_FINAL.hex \
 
+OBJCOPY_BIN += \
+MAKET_VID_FINAL.bin \
+
 
 # All Target
 all: main-build
@@ -73,8 +73,8 @@ all: main-build
 main-build: MAKET_VID_FINAL.elf secondary-outputs
 
 # Tool invocations
-MAKET_VID_FINAL.elf MAKET_VID_FINAL.map: $(OBJS) $(USER_OBJS) C:\SOFT\Cube_IDE_pro\MAKET_VID_LAND\STM32F405RGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "MAKET_VID_FINAL.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\SOFT\Cube_IDE_pro\MAKET_VID_LAND\STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="MAKET_VID_FINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+MAKET_VID_FINAL.elf: $(OBJS) $(USER_OBJS) C:\CPro\Lazurit\Lazurit_Land\Lazurit_Land\STM32F405RGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "MAKET_VID_FINAL.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\CPro\Lazurit\Lazurit_Land\Lazurit_Land\STM32F405RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="MAKET_VID_FINAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -93,12 +93,17 @@ MAKET_VID_FINAL.hex: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
+MAKET_VID_FINAL.bin: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objcopy  -O binary $(EXECUTABLES) "MAKET_VID_FINAL.bin"
+	@echo 'Finished building: $@'
+	@echo ' '
+
 # Other Targets
 clean:
-	-$(RM) MAKET_VID_FINAL.elf MAKET_VID_FINAL.hex MAKET_VID_FINAL.list MAKET_VID_FINAL.map default.size.stdout
+	-$(RM) MAKET_VID_FINAL.bin MAKET_VID_FINAL.elf MAKET_VID_FINAL.hex MAKET_VID_FINAL.list default.size.stdout
 	-@echo ' '
 
-secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST) $(OBJCOPY_HEX)
+secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST) $(OBJCOPY_HEX) $(OBJCOPY_BIN)
 
 fail-specified-linker-script-missing:
 	@echo 'Error: Cannot find the specified linker script. Check the linker settings in the build configuration.'
