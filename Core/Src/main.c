@@ -115,6 +115,7 @@ void SystemClock_Config(void);
   */
 int main(void)
 {
+
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
@@ -147,7 +148,7 @@ int main(void)
   MX_TIM8_Init();
   MX_TIM12_Init();
   MX_ADC3_Init();
-  //MX_UART5_Init();
+  MX_UART5_Init();
   MX_TIM4_Init();
   /* USER CODE BEGIN 2 */
 
@@ -586,7 +587,7 @@ void main_timer_function() {
 			}
 
 			if((millis() - time_tmp >= 500) && (DO_2_State == ON)){
-				//DO_1_State = OFF; ВЫКЛЮЧАТЬ НЕ НУЖНО, Т.К. ПЕРЕДЕЛАЛИ СХЕМУ ДЛЯ ЗАРЯДА КОНДЕНСАТОРОВ
+				//DO_1_State = OFF; ВЫКЛЮЧАТЬ НЕ НУЖНО, Т.К. ПЕРЕДЕЛАЛ�? СХЕМУ ДЛЯ ЗАРЯДА КОНДЕНСАТОРОВ
 				State = Delay;
 			}
 
