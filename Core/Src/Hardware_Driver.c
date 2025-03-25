@@ -165,15 +165,15 @@ void HW_Driver_DI_AI_Read() {
 
 
 	// Считывание аналоговых сигналов
-	T_RT4_Value = Device_ADC_Buf[0];
-	T_RT1_Value = Device_ADC_Buf[1];
-	T_RT2_Value = Device_ADC_Buf[2];
-	T_RT3_Value = Device_ADC_Buf[3];
-	AI_8_Value = Device_ADC_Buf[4];
-	U_Value = Device_ADC_Buf[5];
-	I_Value = Device_ADC_Buf[6];
-	Trt_Value = Device_ADC_Buf[7];
-	T_RT5_Value = Device_ADC_Buf[8];
+	//T_RT4_Value = Device_ADC_Buf[0];
+	//T_RT1_Value = Device_ADC_Buf[1];
+	//T_RT2_Value = Device_ADC_Buf[2];
+	//T_RT3_Value = Device_ADC_Buf[3];
+	//AI_8_Value = Device_ADC_Buf[4];
+	U_Value = Device_ADC_Buf[0];
+	I_Value = Device_ADC_Buf[1];
+	Trt_Value = Device_ADC_Buf[2];
+	//T_RT5_Value = Device_ADC_Buf[8];
 	I_Instant = ((float)I_mean - I_ADC_ref) * I_ADC_koef;
 
 	if(I_Instant < 0){

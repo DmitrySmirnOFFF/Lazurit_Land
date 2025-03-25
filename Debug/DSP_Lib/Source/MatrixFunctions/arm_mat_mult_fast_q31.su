@@ -1,1 +1,1 @@
-arm_mat_mult_fast_q31.c:83:12:arm_mat_mult_fast_q31	160	static
+../DSP_Lib/Source/MatrixFunctions/arm_mat_mult_fast_q31.c:83:12:arm_mat_mult_fast_q31	304	static

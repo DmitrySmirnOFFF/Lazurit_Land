@@ -1,2 +1,2 @@
-arm_math.h:469:25:clip_q63_to_q31	16	static
-arm_shift_q31.c:84:6:arm_shift_q31	80	static
+C:/Cpro/Lazurit/Lazurit_Land/DSP_Lib/Include/arm_math.h:469:25:clip_q63_to_q31	16	static
+../DSP_Lib/Source/BasicMathFunctions/arm_shift_q31.c:84:6:arm_shift_q31	80	static

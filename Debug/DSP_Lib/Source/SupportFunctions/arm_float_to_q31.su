@@ -1,2 +1,2 @@
-arm_math.h:469:25:clip_q63_to_q31	16	static
-arm_float_to_q31.c:80:6:arm_float_to_q31	40	static
+C:/Cpro/Lazurit/Lazurit_Land/DSP_Lib/Include/arm_math.h:469:25:clip_q63_to_q31	16	static
+../DSP_Lib/Source/SupportFunctions/arm_float_to_q31.c:80:6:arm_float_to_q31	40	static

@@ -1,2 +1,2 @@
-arm_math.h:469:25:clip_q63_to_q31	16	static
-arm_rms_q31.c:73:6:arm_rms_q31	104	static
+C:/Cpro/Lazurit/Lazurit_Land/DSP_Lib/Include/arm_math.h:469:25:clip_q63_to_q31	16	static
+../DSP_Lib/Source/StatisticsFunctions/arm_rms_q31.c:73:6:arm_rms_q31	224	static

@@ -1,1 +1,1 @@
-arm_cmplx_conj_f32.c:82:6:arm_cmplx_conj_f32	64	static
+../DSP_Lib/Source/ComplexMathFunctions/arm_cmplx_conj_f32.c:82:6:arm_cmplx_conj_f32	64	static
