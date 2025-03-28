@@ -1072,12 +1072,12 @@ void ModbusRTU_update_reg()
 	// Erorr
 	DATA_AI_buf[2] = Device_Error;
 
-	// U
-	tmp_int16 = U_Instant;
+	// U_value
+	tmp_int16 = U_Value;
 	DATA_AI_buf[3] = (uint16_t)tmp_int16;
 
-	// I
-	tmp_int16 = I_Instant;
+	// I_value
+	tmp_int16 = I_Value;
 	DATA_AI_buf[4] = (uint16_t)tmp_int16;
 
 	// Reg_U.Out
@@ -1085,6 +1085,13 @@ void ModbusRTU_update_reg()
 	DATA_AI_buf[5] = (uint16_t)tmp_int16;
 	PC_Start_flag = DATA_AO_buf[0];
 
+	// U_Instant
+	tmp_int16 = U_Instant;
+	DATA_AI_buf[7] = (uint16_t)tmp_int16;
+
+	// I_Instant
+	tmp_int16 = I_Instant;
+	DATA_AI_buf[8] = (uint16_t)tmp_int16;
 
 	// Write reg mdb
 	if (DATA_AO_buf[0] == 1)
@@ -1097,6 +1104,8 @@ void ModbusRTU_update_reg()
 	}
 
 	return;
+	down_targ_volt = DATA_AO_buf[1];
+
 }
 
 /* USER CODE END 4 */

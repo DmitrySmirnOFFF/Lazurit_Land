@@ -24,4 +24,4 @@
 ../Core/Src/main.c:1008:6:ModbusRTU_Init_AO	2
 ../Core/Src/main.c:1017:6:ModbusRTU_Init_AI	2
 ../Core/Src/main.c:1026:6:ModbusRTU_update_reg	12
-../Core/Src/main.c:1108:6:Error_Handler	1
+../Core/Src/main.c:1117:6:Error_Handler	1
