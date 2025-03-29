@@ -30,7 +30,7 @@ Core/Src/other_func.o: ../Core/Src/other_func.c ../Core/Inc/other_func.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
- C:/Cpro/Lazurit/Lazurit_Land/DSP_Lib/Include/arm_math.h
+ C:/Project/Cube_IDE/Lazurit_Land/DSP_Lib/Include/arm_math.h
 ../Core/Inc/other_func.h:
 ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h:
 ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f405xx.h:
@@ -63,4 +63,4 @@ Core/Src/other_func.o: ../Core/Src/other_func.c ../Core/Inc/other_func.h \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
-C:/Cpro/Lazurit/Lazurit_Land/DSP_Lib/Include/arm_math.h:
+C:/Project/Cube_IDE/Lazurit_Land/DSP_Lib/Include/arm_math.h:

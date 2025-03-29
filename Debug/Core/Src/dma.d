@@ -33,7 +33,7 @@ Core/Src/dma.o: ../Core/Src/dma.c ../Core/Inc/dma.h ../Core/Inc/main.h \
  ../Core/Inc/adc.h ../Core/Inc/tim.h ../Core/Inc/usart.h \
  ../Core/Inc/gpio.h ../Core/Inc/Hardware_Driver.h ../Core/Inc/ModbusRTU.h \
  ../Core/Inc/other_func.h \
- C:/Cpro/Lazurit/Lazurit_Land/DSP_Lib/Include/arm_math.h
+ C:/Project/Cube_IDE/Lazurit_Land/DSP_Lib/Include/arm_math.h
 ../Core/Inc/dma.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
@@ -74,4 +74,4 @@ Core/Src/dma.o: ../Core/Src/dma.c ../Core/Inc/dma.h ../Core/Inc/main.h \
 ../Core/Inc/Hardware_Driver.h:
 ../Core/Inc/ModbusRTU.h:
 ../Core/Inc/other_func.h:
-C:/Cpro/Lazurit/Lazurit_Land/DSP_Lib/Include/arm_math.h:
+C:/Project/Cube_IDE/Lazurit_Land/DSP_Lib/Include/arm_math.h:

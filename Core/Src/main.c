@@ -517,7 +517,8 @@ void main_timer_function() {
 		//Работают сейчас
 		Ramp_Init(&Ramp_Amp, &zad_u, 1200, 0, 10, 1);
 		//Regulator_Init(&Reg_U, &Ramp_Amp.Out, &U_Instant, 0.0005, 0.005, 0.8, 0, 0.8, 0);
-		Regulator_Init(&Reg_U, &Ramp_Amp.Out, &calc_os_u, 0.0005, 0.005, 0.8, 0, 0.8, 0);
+		//Regulator_Init(&Reg_U, &Ramp_Amp.Out, &calc_os_u, 0.0005, 0.005, 0.8, 0, 0.8, 0); // ОСТАВИТЬ ПОТОМ ЭТО
+		Regulator_Init(&Reg_U, &zad_u, &U_Instant, 0.0005, 0.005, 0.8, 0, 0.8, 0); // ТЕСТ
 		//Не работают
 		Ramp_Init(&Ramp_Freq, &zad_freq, PFM_MAX_FREQ, PFM_MIN_FREQ, 40, 1);
 		Ramp_Init(&Ramp_Phase, &zad_phase, PFM_MAX_PHASE, PFM_MIN_PHASE, 1, 100);
@@ -652,23 +653,24 @@ void main_timer_function() {
 
 				if(millis() - time_tmp >= T_DELAY_WORK){
 
-					if(autocomp_enable){
-						if(targ_u != zad_u){
-							zad_u = targ_u;
-						}
-					} else {
-						if(zad_u_PC != zad_u){
-							zad_u = zad_u_PC;
-						}
-					}
-
-					if(zad_u >= HV_MAX_VOLT){
-						zad_u = HV_MAX_VOLT;
-					}
-
-					//targ_u = DOWN_TARGET_VOLT*DOWN_TV_KOEF;
-
-					targ_u = down_targ_volt*DOWN_TV_KOEF;
+//					if(autocomp_enable){
+//						if(targ_u != zad_u){
+//							zad_u = targ_u;
+//						}
+//					} else {
+//						if(zad_u_PC != zad_u){
+//							zad_u = zad_u_PC;
+//						}
+//					}
+//
+//					if(zad_u >= HV_MAX_VOLT){
+//						zad_u = HV_MAX_VOLT;
+//					}
+//
+//					//targ_u = DOWN_TARGET_VOLT*DOWN_TV_KOEF;
+//
+//					targ_u = down_targ_volt*DOWN_TV_KOEF;
+					zad_u = 800;
 
 				}
 
