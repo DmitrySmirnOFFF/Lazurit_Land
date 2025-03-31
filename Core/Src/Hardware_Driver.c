@@ -65,7 +65,7 @@ uint32_t U_mean_sum;
 uint16_t U_mean_buf[MEAN_BUF_SIZE];
 
 float I_Instant;
-float I_ADC_ref = 0;//2036
+float I_ADC_ref = 1990;//2036
 float I_ADC_koef = I_SENS_K / TURN_NUM;
 
 float I_abs;

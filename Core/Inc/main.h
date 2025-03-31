@@ -225,7 +225,7 @@ extern Device_State_TypeDef State;
 //датчик напряжения
 #define U_SENS_K 5 //5.3
 //датчик тока
-#define I_SENS_K 1
+#define I_SENS_K 0.068
 //это если нужно учесть что ты пропустил провод несколько раз через датчик
 #define TURN_NUM 1
 
