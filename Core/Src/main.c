@@ -481,6 +481,7 @@ void main_timer_function() {
 	}
 
 	//По этому флагу разрешается работа доп стойки для жесткой коммутациии
+	EN_OS_State = 1; // СМИРНОВ СКАЗАЛ ТАК НАДО!!!!
 	if(EN_OS_State){
 		autocomp_enable = 1;
 	} else {
@@ -515,10 +516,10 @@ void main_timer_function() {
 
 		// инициализация рамп и регуляторов
 		//Работают сейчас
-		Ramp_Init(&Ramp_Amp, &zad_u, 1200, 0, 10, 1);
-		//Regulator_Init(&Reg_U, &Ramp_Amp.Out, &U_Instant, 0.0005, 0.005, 0.8, 0, 0.8, 0);
-		//Regulator_Init(&Reg_U, &Ramp_Amp.Out, &calc_os_u, 0.0005, 0.005, 0.8, 0, 0.8, 0); // ОСТАВИТЬ ПОТОМ ЭТО
-		Regulator_Init(&Reg_U, &zad_u, &U_Instant, 0.0005, 0.005, 0.8, 0, 0.8, 0); // ТЕСТ
+		Ramp_Init(&Ramp_Amp, &zad_u, HV_MAX_VOLT, 0, 10, 1);
+		Regulator_Init(&Reg_U, &Ramp_Amp.Out, &calc_os_u, 0.0005, 0.005, 0.8, 0, 0.8, 0);
+		// Regulator_Init(&Reg_U, &Ramp_Amp.Out, &U_Instant, 0.0005, 0.005, 0.8, 0, 0.8, 0);
+        // Regulator_Init(&Reg_U, &zad_u, &U_Instant, 0.0005, 0.005, 0.8, 0, 0.8, 0); // ТЕСТ
 		//Не работают
 		Ramp_Init(&Ramp_Freq, &zad_freq, PFM_MAX_FREQ, PFM_MIN_FREQ, 40, 1);
 		Ramp_Init(&Ramp_Phase, &zad_phase, PFM_MAX_PHASE, PFM_MIN_PHASE, 1, 100);
@@ -643,37 +644,40 @@ void main_timer_function() {
 			//SoftSw_PWM_Channels_UpdatePhase(TIM_CHANNEL_3, tmp_ch3_phase);
 			//SoftSw_PWM_Channels_UpdatePhase(TIM_CHANNEL_4, tmp_ch4_phase);
 
-			if(HARD_SW_EN){
-
+			if(HARD_SW_EN)
+			{
 				//Разомкнутая система
 				//HardSw_PWM_Channels_UpdateDuty(HardSw_Duty);
 
 				//Замкнутая система
 				HardSw_PWM_Channels_UpdateDuty(Reg_U.Out);
 
-				if(millis() - time_tmp >= T_DELAY_WORK){
+				if(millis() - time_tmp >= T_DELAY_WORK)
+				{
 
-//					if(autocomp_enable){
-//						if(targ_u != zad_u){
-//							zad_u = targ_u;
-//						}
-//					} else {
-//						if(zad_u_PC != zad_u){
-//							zad_u = zad_u_PC;
-//						}
-//					}
-//
-//					if(zad_u >= HV_MAX_VOLT){
-//						zad_u = HV_MAX_VOLT;
-//					}
-//
-//					//targ_u = DOWN_TARGET_VOLT*DOWN_TV_KOEF;
-//
-//					targ_u = down_targ_volt*DOWN_TV_KOEF;
-					zad_u = 800;
+					if(autocomp_enable)
+					{
+						if(targ_u != zad_u)
+						{
+							zad_u = targ_u;
+						}
+					}
+					else
+					{
+						if(zad_u_PC != zad_u)
+						{
+							zad_u = zad_u_PC;
+						}
+					}
 
+					if(zad_u >= HV_MAX_VOLT)
+					{
+						zad_u = HV_MAX_VOLT;
+					}
+
+					//targ_u = DOWN_TARGET_VOLT*DOWN_TV_KOEF;
+					targ_u = down_targ_volt*DOWN_TV_KOEF;
 				}
-
 			}
 
 			Button_Control(&Button_1, Stop);
@@ -1014,6 +1018,7 @@ void ModbusRTU_Init_AO ()
 	{
 		DATA_AO[i] = &DATA_AO_buf[i];
 	}
+	DATA_AO_buf[1] = down_targ_volt;
 }
 
 void ModbusRTU_Init_AI ()
@@ -1083,9 +1088,13 @@ void ModbusRTU_update_reg()
 	DATA_AI_buf[4] = (uint16_t)tmp_int16;
 
 	// Reg_U.Out
-	tmp_int16 = Reg_U.Out;
+	tmp_int16 = (Reg_U.Out * 1000);
 	DATA_AI_buf[5] = (uint16_t)tmp_int16;
-	PC_Start_flag = DATA_AO_buf[0];
+	// PC_Start_flag = DATA_AO_buf[0];
+
+	// Zad_U
+	tmp_int16 = zad_u;
+	DATA_AI_buf[6] = (uint16_t)tmp_int16;
 
 	// U_Instant
 	tmp_int16 = U_Instant;
@@ -1104,10 +1113,8 @@ void ModbusRTU_update_reg()
 	{
 		PC_Start_flag = 0;
 	}
-
+	targ_u = DATA_AO_buf[1];
 	return;
-	down_targ_volt = DATA_AO_buf[1];
-
 }
 
 /* USER CODE END 4 */

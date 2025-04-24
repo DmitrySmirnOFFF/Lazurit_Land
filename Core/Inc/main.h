@@ -238,8 +238,8 @@ extern Device_State_TypeDef State;
 //требуемое напряжение на выходе подводной части
 #define DOWN_TARGET_VOLT 300 //320 старое
 //максимальное напряжение на выходе надводной части
-//!!!! НЕ РАБОТАЕТ
-#define HV_MAX_VOLT 1100
+//!!!! НЕ РАБОТАЕТ // РАБОТАЕТ!!!!!!
+#define HV_MAX_VOLT 2100
 
 extern uint32_t SoftSw_CCR;
 extern uint32_t HardSw_CCR;
