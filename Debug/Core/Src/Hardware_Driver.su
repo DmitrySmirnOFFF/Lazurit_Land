@@ -1,6 +1,6 @@
 ../Core/Src/Hardware_Driver.c:80:9:Periph_Init	8	static
 ../Core/Src/Hardware_Driver.c:128:6:Periph_Deinit	8	static
-../Core/Src/Hardware_Driver.c:138:6:HW_Driver_DI_AI_Read	16	static
+../Core/Src/Hardware_Driver.c:138:6:HW_Driver_DI_AI_Read	8	static
 ../Core/Src/Hardware_Driver.c:191:6:HW_Driver_DO_PWM_Out	8	static
 ../Core/Src/Hardware_Driver.c:226:6:BIT_WRITE	16	static
 ../Core/Src/Hardware_Driver.c:236:7:map_value	32	static
