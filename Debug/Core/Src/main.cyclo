@@ -23,5 +23,5 @@
 ../Core/Src/main.c:871:6:Device_Check_Error	1
 ../Core/Src/main.c:1014:6:ModbusRTU_Init_AO	2
 ../Core/Src/main.c:1024:6:ModbusRTU_Init_AI	2
-../Core/Src/main.c:1033:6:ModbusRTU_update_reg	12
-../Core/Src/main.c:1126:6:Error_Handler	1
+../Core/Src/main.c:1033:6:ModbusRTU_update_reg	14
+../Core/Src/main.c:1137:6:Error_Handler	1

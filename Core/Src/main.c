@@ -1032,6 +1032,7 @@ void ModbusRTU_Init_AI ()
 
 void ModbusRTU_update_reg()
 {
+	static uint16_t count = 0;
 	int16_t  tmp_int16 = 0;
 	uint16_t tmp_uint16 = 0;
 
@@ -1108,11 +1109,21 @@ void ModbusRTU_update_reg()
 	if (DATA_AO_buf[0] == 1)
 	{
 		PC_Start_flag = 1;
+		DATA_AO_buf[0] = 0;
+	}
+	if ((PC_Start_flag == 1) && (count++ < 300))
+	{
+		asm("Nop");
 	}
 	else
 	{
 		PC_Start_flag = 0;
+		count = 0;
 	}
+//	else
+//	{
+//		PC_Start_flag = 0;
+//	}
 	targ_u = DATA_AO_buf[1];
 	return;
 }
