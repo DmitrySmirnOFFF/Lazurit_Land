@@ -46,6 +46,8 @@ void ModbusRTU_Init() {
 	HAL_GPIO_WritePin(UART_DIR_PORT, UART_DIR_PIN, 0);
 	__HAL_UART_ENABLE_IT(&UART_MODBUS, UART_IT_IDLE);
 	HAL_UART_Receive_IT(&UART_MODBUS, (uint8_t*) buff_rx, Num_Data_buf);
+	__HAL_UART_DISABLE_IT(&UART_MODBUS, UART_IT_PE);
+	__HAL_UART_DISABLE_IT(&UART_MODBUS, UART_IT_ERR);
 }
 
 void ModbusRTU_Deinit() {
@@ -237,10 +239,14 @@ void ModbusRTU_Receive(){
 			}
 		} else {
 			HAL_UART_Receive_IT(&UART_MODBUS, (uint8_t*) buff_rx, Num_Data_buf);
+			__HAL_UART_DISABLE_IT(&UART_MODBUS, UART_IT_PE);
+			__HAL_UART_DISABLE_IT(&UART_MODBUS, UART_IT_ERR);
 			//HAL_UART_Receive_IT(&UART_MODBUS, buff_rx, Num_Data_buf);
 		}
 	} else {
 		HAL_UART_Receive_IT(&UART_MODBUS, (uint8_t*) buff_rx, Num_Data_buf);
+		__HAL_UART_DISABLE_IT(&UART_MODBUS, UART_IT_PE);
+		__HAL_UART_DISABLE_IT(&UART_MODBUS, UART_IT_ERR);
 		//HAL_UART_Receive_IT(&UART_MODBUS, buff_rx, Num_Data_buf);
 	}
 }
@@ -260,7 +266,6 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
 	if (huart == &UART_MODBUS) {
 		ModbusRTU_Receive(); //что-то делаем
 		ModbusRTU_Transmit();
-
 	}
 }
 
@@ -272,6 +277,8 @@ void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart) {
 
 
 		HAL_UART_Receive_IT(&UART_MODBUS, (uint8_t*) buff_rx, Num_Data_buf);
+		__HAL_UART_DISABLE_IT(&UART_MODBUS, UART_IT_PE);
+		__HAL_UART_DISABLE_IT(&UART_MODBUS, UART_IT_ERR);
 
 		//HAL_UART_Receive_IT(&UART_MODBUS, buff_rx, Num_Data_buf);
 	}

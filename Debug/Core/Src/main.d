@@ -33,7 +33,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Core/Inc/adc.h ../Core/Inc/main.h ../Core/Inc/tim.h \
  ../Core/Inc/usart.h ../Core/Inc/gpio.h ../Core/Inc/Hardware_Driver.h \
  ../Core/Inc/ModbusRTU.h ../Core/Inc/other_func.h \
- C:/Project/Cube_IDE/Lazurit_Land/DSP_Lib/Include/arm_math.h \
+ D:/Users/anton/Documents/STM32_prj/Lazurit_Land/DSP_Lib/Include/arm_math.h \
  ../Core/Inc/adc.h ../Core/Inc/dma.h ../Core/Inc/tim.h \
  ../Core/Inc/usart.h ../Core/Inc/gpio.h
 ../Core/Inc/main.h:
@@ -76,7 +76,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Core/Inc/Hardware_Driver.h:
 ../Core/Inc/ModbusRTU.h:
 ../Core/Inc/other_func.h:
-C:/Project/Cube_IDE/Lazurit_Land/DSP_Lib/Include/arm_math.h:
+D:/Users/anton/Documents/STM32_prj/Lazurit_Land/DSP_Lib/Include/arm_math.h:
 ../Core/Inc/adc.h:
 ../Core/Inc/dma.h:
 ../Core/Inc/tim.h:

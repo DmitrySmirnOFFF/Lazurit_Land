@@ -300,6 +300,7 @@ void TIM_NB_Check(TIM_NB_TypeDef* timer);
 uint32_t millis();
 //-----NON BLOKING TIMER--------------------------------------------------------------------------
 void main_timer_function();
+void modbus_timer_function();
 void Button_Control(Button_TypeDef *Button, uint8_t Target_state);
 void LED_Control(LED_CMD_TypeDef Cmd, uint32_t Blink_Period, enum_state *LED_Name, uint32_t *LED_cnt);
 

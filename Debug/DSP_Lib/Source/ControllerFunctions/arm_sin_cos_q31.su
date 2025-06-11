@@ -1,2 +1,2 @@
-C:/Project/Cube_IDE/Lazurit_Land/DSP_Lib/Include/arm_math.h:469:25:clip_q63_to_q31	16	static
+D:/Users/anton/Documents/STM32_prj/Lazurit_Land/DSP_Lib/Include/arm_math.h:469:25:clip_q63_to_q31	16	static
 ../DSP_Lib/Source/ControllerFunctions/arm_sin_cos_q31.c:64:6:arm_sin_cos_q31	544	static

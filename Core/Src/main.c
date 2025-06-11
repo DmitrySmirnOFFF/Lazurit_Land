@@ -63,6 +63,7 @@ uint32_t I_DC_mean;
 int32_t EEPROM_Start_Cnt;
 //Definition of non-bloking timers
 TIM_NB_TypeDef main_timer;
+TIM_NB_TypeDef modbus_timer;
 
 float zad_freq = PFM_MAX_FREQ;
 float zad_u = 0;
@@ -147,13 +148,19 @@ int main(void)
   MX_TIM8_Init();
   MX_TIM12_Init();
   MX_ADC3_Init();
-  //MX_UART5_Init();
+  MX_UART5_Init();
   MX_TIM4_Init();
   /* USER CODE BEGIN 2 */
 
 	//Неблокирующий таймер выполнения основного кода
 	TIM_NB_Init(&main_timer, 1, main_timer_function);
 	TIM_NB_Start(&main_timer, MULTIPLE_DELAY);
+	//Неблокирующий таймер для работы модбас
+	TIM_NB_Init(&modbus_timer, 10, modbus_timer_function);
+	TIM_NB_Start(&modbus_timer, MULTIPLE_DELAY);
+
+	//Modbus инициализация
+	ModbusRTU_Init();
 
 	//Задежка инициализации
 	HAL_Delay(500);
@@ -167,6 +174,7 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 		TIM_NB_Check(&main_timer);
+		TIM_NB_Check(&modbus_timer);
 	}
   /* USER CODE END 3 */
 }
@@ -350,6 +358,23 @@ void SoftSw_PWM_Channels_UpdateFreq(uint32_t New_Freq){
 		TIM9->ARR = freq_tmp;
 		//АЦП!
 		TIM4->ARR = freq_tmp;
+
+
+		if(TIM1->CNT >= TIM1->ARR){
+			TIM1->CNT = 0;
+		}
+		if(TIM2->CNT >= TIM2->ARR){
+			TIM2->CNT = 0;
+		}
+		if(TIM3->CNT >= TIM3->ARR){
+			TIM3->CNT = 0;
+		}
+		if(TIM9->CNT >= TIM9->ARR){
+			TIM9->CNT = 0;
+		}
+		if(TIM4->CNT >= TIM4->ARR){
+			TIM4->CNT = 0;
+		}
 	}
 
 }
@@ -451,6 +476,13 @@ void HardSw_PWM_Channels_UpdateFreq(uint32_t New_Freq){
 	if(TIM8->ARR != freq_tmp){
 		TIM8->ARR = freq_tmp;
 		TIM12->ARR = freq_tmp;
+
+		if(TIM8->CNT >= TIM8->ARR){
+			TIM8->CNT = 0;
+		}
+		if(TIM12->CNT >= TIM12->ARR){
+			TIM12->CNT = 0;
+		}
 	}
 
 }
@@ -481,15 +513,12 @@ void main_timer_function() {
 	}
 
 	//По этому флагу разрешается работа доп стойки для жесткой коммутациии
-	EN_OS_State = 1; // СМИРНОВ СКАЗАЛ ТАК НАДО!!!!
+	EN_OS_State = 1; // СМ�?РНОВ СКАЗАЛ ТАК НАДО!!!!
 	if(EN_OS_State){
 		autocomp_enable = 1;
 	} else {
 		autocomp_enable = 0;
 	}
-
-	// обновление регистров MDB
-	ModbusRTU_update_reg();
 
 	//Основная стейт машина
 	switch (State) {
@@ -523,10 +552,6 @@ void main_timer_function() {
 		//Не работают
 		Ramp_Init(&Ramp_Freq, &zad_freq, PFM_MAX_FREQ, PFM_MIN_FREQ, 40, 1);
 		Ramp_Init(&Ramp_Phase, &zad_phase, PFM_MAX_PHASE, PFM_MIN_PHASE, 1, 100);
-
-
-		//Modbus заготовочка
-		ModbusRTU_Init();
 
 		//Конфигурируем регистры таймеров на работу с нужной частотой
 		SoftSw_PWM_Channels_UpdateFreq(SOFTSW_FREQ);
@@ -588,7 +613,7 @@ void main_timer_function() {
 			}
 
 			if((millis() - time_tmp >= 500) && (DO_2_State == ON)){
-				//DO_1_State = OFF; ВЫКЛЮЧАТЬ НЕ НУЖНО, Т.К. ПЕРЕДЕЛАЛИ СХЕМУ ДЛЯ ЗАРЯДА КОНДЕНСАТОРОВ
+				//DO_1_State = OFF; ВЫКЛЮЧАТЬ НЕ НУЖНО, Т.К. ПЕРЕДЕЛАЛ�? СХЕМУ ДЛЯ ЗАРЯДА КОНДЕНСАТОРОВ
 				State = Delay;
 			}
 
@@ -770,6 +795,12 @@ void main_timer_function() {
 
 	}
 
+}
+
+
+void modbus_timer_function() {
+	// обновление регистров MDB
+	ModbusRTU_update_reg();
 }
 
 //-----NON BLOKING TIMER--------------------------------------------------------------------------

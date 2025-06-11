@@ -1,2 +1,2 @@
-C:/Project/Cube_IDE/Lazurit_Land/DSP_Lib/Include/arm_math.h:603:28:arm_recip_q15	3
+D:/Users/anton/Documents/STM32_prj/Lazurit_Land/DSP_Lib/Include/arm_math.h:603:28:arm_recip_q15	3
 ../DSP_Lib/Source/FilteringFunctions/arm_lms_norm_q15.c:79:6:arm_lms_norm_q15	8

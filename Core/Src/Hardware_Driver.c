@@ -140,7 +140,7 @@ void HW_Driver_DI_AI_Read() {
 	// Считывание дискретных сигналов
 
 	Fault_H1_State = !HAL_GPIO_ReadPin(Fault_H1_GPIO_Port, Fault_H1_Pin);
-	Fault_H2_State = !HAL_GPIO_ReadPin(Fault_L2_GPIO_Port, Fault_L2_Pin);
+	Fault_H2_State = !HAL_GPIO_ReadPin(Fault_H2_GPIO_Port, Fault_H2_Pin);
 	Fault_H3_State = !HAL_GPIO_ReadPin(Fault_H3_GPIO_Port, Fault_H3_Pin);
 	Fault_H4_State = !HAL_GPIO_ReadPin(Fault_H4_GPIO_Port, Fault_H4_Pin);
 	Fault_H4_1_State = !HAL_GPIO_ReadPin(Fault_H4_1_GPIO_Port, Fault_H4_1_Pin);
